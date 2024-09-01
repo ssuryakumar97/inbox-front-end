@@ -1,5 +1,5 @@
 import { FormControl, MenuItem, Select } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import styled from "styled-components";
 import Divider from "./Divider";
@@ -9,6 +9,7 @@ import EmailModal from "./EmailModal";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useHotkeys } from 'react-hotkeys-hook'
 import "./campaignMiddle.css"
 
 const MainContainer = styled.div`
@@ -165,27 +166,24 @@ const ReplyImg = styled.img`
 const CampaignMiddle = () => {
   
   
+  const [replyToggle, setReplyToggle] = useState(false)
   const toggleVal = useSelector((state) => state.toggle);
   const threadData = useSelector((state) => state.thread, shallowEqual)
-  const [replyToggle, setReplyToggle] = useState(false)
-  const tdata = threadData
   const location = useLocation()
   const token= location.search.split("=")[1]
   const bearer = "Bearer "+token
 
-
-  useEffect(()=>{
-    window.addEventListener("keypress",handleKeyPress)
-    return () => {
-      window.addEventListener("keypress",  handleKeyPress)
-    }
-  },[threadData])
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'r' || event.key === "R") {
-      setReplyToggle(true)
+  
+  useHotkeys("r" || "R", () => {
+    console.log(replyToggle)
+    if ( replyToggle === false) {
+      setReplyToggle(() => true)
     } 
-    if(event.key === 'd' || event.key === "D") {
+  } )
+  
+  useHotkeys("D" || "d", () => {
+    console.log(replyToggle)
+    if( replyToggle === false) {
       const handleDelete = async() => {
         try {
             const res = await axios.delete(`https://hiring.reachinbox.xyz/api/v1/onebox/messages/${threadData.threadId}`,{
@@ -200,7 +198,7 @@ const CampaignMiddle = () => {
     }
     handleDelete()
     }
-  }
+  } )
 
   
   const date = threadData.sentAt
@@ -221,7 +219,10 @@ const CampaignMiddle = () => {
   ];
   const dateMonth = months[datetime.getMonth()]+ " " + datetime.getDate()
   const handleReply = () => {
-    setReplyToggle(prev => !prev)
+    setReplyToggle(true)
+  }
+  const handleClose = () => {
+    setReplyToggle(false)
   }
 
 
@@ -300,7 +301,7 @@ const CampaignMiddle = () => {
       <Divider content={dateMonth} />
       <CampaignMiddleBottom threadData={threadData}/>
       <ExtendDivider />
-      {replyToggle ? <EmailModal toggling={handleReply} threadData={threadData}/> : <StyledButton onClick={handleReply}>
+      {replyToggle ? <EmailModal toggling={handleClose} threadData={threadData}/> : <StyledButton onClick={handleReply}>
         <ReplyImg src="reply.png" alt="reply" />
         Reply
       </StyledButton> }
