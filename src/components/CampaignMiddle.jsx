@@ -183,7 +183,7 @@ const CampaignMiddle = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === 'r' || event.key === "R") {
-      setReplyToggle(prev => !prev)
+      setReplyToggle(true)
     } 
     if(event.key === 'd' || event.key === "D") {
       const handleDelete = async() => {
@@ -302,7 +302,7 @@ const CampaignMiddle = () => {
       <ExtendDivider />
       {replyToggle ? <EmailModal toggling={handleReply} threadData={threadData}/> : <StyledButton onClick={handleReply}>
         <ReplyImg src="reply.png" alt="reply" />
-        Ready
+        Reply
       </StyledButton> }
       
     </MainContainer>

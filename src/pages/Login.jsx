@@ -1,7 +1,9 @@
 import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { login } from "../redux/userReducer";
 // import app from "../assets/"
 
 const MainDiv = styled.div`
@@ -201,7 +203,7 @@ color: #5C5F66;
 `
 
 const Login = () => {
-
+  
   return (
     <MainDiv>
       <LogoDiv>
@@ -213,7 +215,7 @@ const Login = () => {
             <TextDiv>Create a new account</TextDiv>
             <GoogleDiv>
               <FrameDiv>
-                  <Link to="https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:5173/">
+                  <Link to="https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:5173/home">
                 <InnerDiv >
                   <InnerGoogleLogo src="googleLogo.png" alt="Google" />
                   <InnerText>Sign Up with Google</InnerText>

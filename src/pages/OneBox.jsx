@@ -36,7 +36,7 @@ const OneBox = () => {
   const location = useLocation();
   const token = location.search.split("=")[1];
   const bearer = "Bearer " + token;
-  console.log(token);
+  // console.log(token);
   const dispatch = useDispatch();
 
   useEffect(() => {
