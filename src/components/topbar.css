@@ -1,0 +1,12 @@
+.MenuItem.Mui-selected :hover{
+    background-color:blue;
+  }
+ .MuiList-root{
+    color: white;
+    background-color: #222426;
+ }
+
+ .MuiList-root .lightmode{
+    color: #222426;
+    background-color: white;
+ }

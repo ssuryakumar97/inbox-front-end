@@ -1,0 +1,9 @@
+.MuiList-root .normal{
+    color: white;
+    background-color: #222426;
+ }
+
+ .MuiList-root .side-bar-light-mode{
+    color: #222426;
+    background-color: white;
+ }
