@@ -215,8 +215,8 @@ const Login = () => {
             <TextDiv>Create a new account</TextDiv>
             <GoogleDiv>
               <FrameDiv>
-                  <Link to="https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:5173/home">
-                  {/* <Link to="https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://inboxfrontend.netlify.app/home"> */}
+                  {/* <Link to="https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:5173/home"> */}
+                  <Link to="https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://inboxfrontend.netlify.app/home">
                 <InnerDiv >
                   <InnerGoogleLogo src="googleLogo.png" alt="Google" />
                   <InnerText>Sign Up with Google</InnerText>
